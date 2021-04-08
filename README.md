@@ -1,2 +1,4 @@
 # Artigence
-<img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/></a>&nbsp 
+<p align="center">
+  ![github badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github)
+</p>
