@@ -9,7 +9,7 @@
 # Tech
 ![github badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github)     ![python](https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white) ![tensorflow](https://img.shields.io/badge/Tensorflow-orange?style=flat-square&logo=Tensorflow&logoColor=white)    
 공개 MI dataset을 이용하여 Python 및 Tensorflow를 통해 EEGNET을 학습시켜 BMI 설계 및 제작 
-# [Plan](http://https://github.com/KNU-BrainAI-Capstone2021/Artigence/Plan)✨
+# [Plan](https://github.com/KNU-BrainAI-Capstone2021/Artigence/tree/master/Plan)✨
 
 | Date | Summary |
 | ------ | ------ |
