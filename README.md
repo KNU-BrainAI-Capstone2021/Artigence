@@ -22,6 +22,7 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 | 5/3 | 3차 아이디어 회의 |
 | 5/7 | 교수님 3차 Feedback |
 | 5/12 | 1차 아이디어 PT |
-
+| 5/14 | 4차 아이디어 회의 |
+| 5/17 | 교수님 4차 Feedback |
 
 
