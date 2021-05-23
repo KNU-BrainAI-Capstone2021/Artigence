@@ -96,7 +96,7 @@ print('Finished Training')
 
 
 
-
+ 
 #%%
 """
 epochs = 10
