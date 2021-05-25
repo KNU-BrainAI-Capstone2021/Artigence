@@ -18,7 +18,7 @@ from pyriemann.tangentspace import TangentSpace
 from pyriemann.utils.viz import plot_confusion_matrix
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LogisticRegression
-
+from sklearn.model_selection import train_test_split
 # tools for plotting confusion matrices
 from matplotlib import pyplot as plt
 
@@ -31,53 +31,39 @@ from matplotlib import pyplot as plt
 K.set_image_data_format('channels_last')
 
 ##################### Process, filter and epoch the data ######################
-data_path = sample.data_path()
-
-# Set parameters and read data
-raw_fname = data_path + '/MEG/sample/sample_audvis_filt-0-40_raw.fif'
-event_fname = data_path + '/MEG/sample/sample_audvis_filt-0-40_raw-eve.fif'
-tmin, tmax = -0., 1
-event_id = dict(aud_l=1, aud_r=2, vis_l=3, vis_r=4)
-
-# Setup for reading the raw data
-raw = io.Raw(raw_fname, preload=True, verbose=False)
-raw.filter(2, None, method='iir')  # replace baselining with high-pass
-events = mne.read_events(event_fname)
-
-raw.info['bads'] = ['MEG 2443']  # set bad channels
-picks = mne.pick_types(raw.info, meg=False, eeg=True, stim=False, eog=False,
-                       exclude='bads')
-
-# Read epochs
-epochs = mne.Epochs(raw, events, event_id, tmin, tmax, proj=False,
-                    picks=picks, baseline=None, preload=True, verbose=False)
-labels = epochs.events[:, -1]
-
-# extract raw data. scale by 1000 due to scaling sensitivity in deep learning
+dpath = "C:/Users/USER/OneDrive - knu.ac.kr/Data/s01_pir.set"
+eeglab_raw  = mne.io.read_raw_eeglab(dpath)
+print(eeglab_raw.annotations[1])
+print(len(eeglab_raw.annotations))
+print(set(eeglab_raw.annotations.duration))
+print(set(eeglab_raw.annotations.description))
+print(eeglab_raw.annotations.onset[0])
+custom_mapping = {'left': 1, 'right': 2}
+(events_from_annot,event_dict) = mne.events_from_annotations(eeglab_raw, event_id=custom_mapping)
+print(event_dict)
+print(events_from_annot[:5])
+event_id = dict(left=1,right=2)
+epochs = mne.Epochs(eeglab_raw, events_from_annot, event_id)
+labels = epochs.events[:,-1]
 X = epochs.get_data( ) *1000 # format is in (trials, channels, samples)
-y = labels
+Y = labels
 
-kernels, chans, samples = 1, 60, 151
+kernels, chans, samples = 1, 64, 359
 
 # take 50/25/25 percent of the data to train/validate/test
-X_train      = X[0:144 ,]
-Y_train      = y[0:144]
-X_validate   = X[144:216 ,]
-Y_validate   = y[144:216]
-X_test       = X[216: ,]
-Y_test       = y[216:]
+X_train,X_test,Y_train,Y_test = train_test_split(X,Y, train_size=0.75, shuffle=True,random_state=1004)
+
 
 ############################# EEGNet portion ##################################
 
 # convert labels to one-hot encodings.
-Y_train      = np_utils.to_categorical(Y_trai n -1)
-Y_validate   = np_utils.to_categorical(Y_validat e -1)
-Y_test       = np_utils.to_categorical(Y_tes t -1)
-
+Y_train      = np_utils.to_categorical(Y_train -1)
+#Y_validate   = np_utils.to_categorical(Y_validate -1)
+Y_test       = np_utils.to_categorical(Y_test -1)
 # convert data to NHWC (trials, channels, samples, kernels) format. Data
 # contains 60 channels and 151 time-points. Set the number of kernels to 1.
 X_train      = X_train.reshape(X_train.shape[0], chans, samples, kernels)
-X_validate   = X_validate.reshape(X_validate.shape[0], chans, samples, kernels)
+#X_validate   = X_validate.reshape(X_validate.shape[0], chans, samples, kernels)
 X_test       = X_test.reshape(X_test.shape[0], chans, samples, kernels)
 
 print('X_train shape:', X_train.shape)
@@ -88,7 +74,7 @@ print(X_test.shape[0], 'test samples')
 # configure the EEGNet-8,2,16 model with kernel length of 32 samples (other
 # model configurations may do better, but this is a good starting point)
 # kernels, chans, samples = 1, 60, 151
-model = EEGNet(nb_classes = 4, Chans = chans, Samples = samples,
+model = EEGNet(nb_classes = 2, Chans = chans, Samples = samples,
                dropoutRate = 0.5, kernLength = 32, F1 = 8, D = 2, F2 = 16,
                dropoutType = 'Dropout')
 
@@ -100,7 +86,7 @@ model.summary()
 numParams    = model.count_params()
 
 # set a valid path for your system to record model checkpoints
-checkpointer = ModelCheckpoint(filepath='C:\\Users\\USER\\PycharmProjects\\eegnet\\tmp\\checkpoint.h5', verbose=1,
+checkpointer = ModelCheckpoint(filepath='C:\\Users\\USER\\PycharmProjects\\eegnet\\tmp\\checkpoint2.h5', verbose=1,
                                save_best_only=True)
 
 ###############################################################################
@@ -112,19 +98,19 @@ checkpointer = ModelCheckpoint(filepath='C:\\Users\\USER\\PycharmProjects\\eegne
 
 # the syntax is {class_1:weight_1, class_2:weight_2,...}. Here just setting
 # the weights all to be 1
-class_weights = {0 :1, 1 :1, 2 :1, 3 :1}
+class_weights = {0 :1, 1 :1}
 
 ################################################################################
 # fit the model. Due to very small sample sizes this can get
 # pretty noisy run-to-run, but most runs should be comparable to xDAWN +
 # Riemannian geometry classification (below)
 ################################################################################
-hist = model.fit(X_train, Y_train, batch_size = 16, epochs = 300,
-                 verbose = 2, validation_data=(X_validate, Y_validate),
+hist = model.fit(X_train, Y_train, batch_size = 16, epochs = 30,
+                 verbose = 2, validation_split=0.33,
                  callbacks=[checkpointer], class_weight = class_weights)
 
 # load optimal weights
-model.load_weights('C:\\Users\\USER\\PycharmProjects\\eegnet\\tmp\\checkpoint.h5')
+model.load_weights('C:\\Users\\USER\\PycharmProjects\\eegnet\\tmp\\checkpoint2.h5')
 
 ###############################################################################
 # can alternatively used the weights provided in the repo. If so it should get
