@@ -25,4 +25,10 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 | 5/14 | 4차 아이디어 회의 |
 | 5/17 | 교수님 4차 Feedback |
 
+|Name|github_ID|
+|------|------|
+|박재성|wotjd0715|
+|김태헌|TaeHeonKim250|
+|김지혜|ihyekim213|
+|장현진|nowwhy|
 
