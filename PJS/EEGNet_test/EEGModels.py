@@ -131,14 +131,14 @@ def EEGNet(nb_classes, Chans=64, Samples=128,
                              depthwise_constraint=max_norm(1.))(block1)
     block1 = BatchNormalization()(block1)
     block1 = Activation('elu')(block1)
-    block1 = AveragePooling2D((1, 4))(block1)
+    block1 = AveragePooling2D((1, 16))(block1)
     block1 = dropoutType(dropoutRate)(block1)
 
-    block2 = SeparableConv2D(F2, (1, 16),
+    block2 = SeparableConv2D(F2, (1, 64),
                              use_bias=False, padding='same')(block1)
     block2 = BatchNormalization()(block2)
     block2 = Activation('elu')(block2)
-    block2 = AveragePooling2D((1, 8))(block2)
+    block2 = AveragePooling2D((1, 16))(block2)
     block2 = dropoutType(dropoutRate)(block2)
 
     flatten = Flatten(name='flatten')(block2)

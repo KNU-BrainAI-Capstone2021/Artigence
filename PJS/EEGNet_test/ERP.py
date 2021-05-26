@@ -90,7 +90,7 @@ print(X_test.shape[0], 'test samples')
 # model configurations may do better, but this is a good starting point)
 # kernels, chans, samples = 1, 60, 151
 model = EEGNet(nb_classes = 4, Chans = chans, Samples = samples, 
-               dropoutRate = 0.5, kernLength = 32, F1 = 8, D = 2, F2 = 16,
+               dropoutRate = 0.5, kernLength = 32, F1 = 16, D = 2, F2 = 32,
                dropoutType = 'Dropout')
 
 # compile the model and set the optimizers
