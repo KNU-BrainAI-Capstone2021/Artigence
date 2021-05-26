@@ -11,7 +11,7 @@
 |------|------|
 |박재성|wotjd0715|
 |김태헌|TaeHeonKim250|
-|김지혜|ihyekim213|
+|김지혜|jihyekim213|
 |장현진|nowwhy|
 
 # Tech
