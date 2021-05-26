@@ -6,10 +6,19 @@
 - _Tae Heon Kim_
 - _Jang Hyeon Jin_
 
+### Info
+|Name|github_ID|
+|------|------|
+|박재성|wotjd0715|
+|김태헌|TaeHeonKim250|
+|김지혜|ihyekim213|
+|장현진|nowwhy|
+
 # Tech
 ![github badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github)     ![python](https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white) ![tensorflow](https://img.shields.io/badge/Tensorflow-orange?style=flat-square&logo=Tensorflow&logoColor=white)    
 공개 MI dataset을 이용하여 Python 및 Tensorflow를 통해 EEGNET을 학습시켜 BMI 설계 및 제작    
 Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.ac.kr/opensource/opendb/)
+
 
 # [Progress](https://github.com/KNU-BrainAI-Capstone2021/Artigence/tree/master/Plan)✨
 
@@ -25,10 +34,4 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 | 5/14 | 4차 아이디어 회의 |
 | 5/17 | 교수님 4차 Feedback |
 
-|Name|github_ID|
-|------|------|
-|박재성|wotjd0715|
-|김태헌|TaeHeonKim250|
-|김지혜|ihyekim213|
-|장현진|nowwhy|
 
