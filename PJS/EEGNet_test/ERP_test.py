@@ -7,7 +7,7 @@ from mne import io
 from mne.datasets import sample
 
 # EEGNet-specific imports
-from EEGModels import EEGNet
+from EEGModels import EEGNet_test
 from tensorflow.keras import utils as np_utils
 from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow.keras import backend as K
@@ -43,16 +43,16 @@ custom_mapping = {'left': 1, 'right': 2}
 print(event_dict)
 print(events_from_annot[:5])
 event_id = dict(left=1,right=2)
-tmin = 1
+tmin = 0
 tmax = 2.9980
 epochs = mne.Epochs(eeglab_raw, events_from_annot, event_id, tmin, tmax,baseline = None)
 
 labels = epochs.events[:,-1]
-X = epochs.get_data( ) *1000 # format is in (trials, channels, samples)
+X = epochs.get_data( ) # format is in (trials, channels, samples)
 Y = labels
 
 
-kernels, chans, samples = 1, 64, 1024
+kernels, chans, samples = 1, 64, 1536
 
 # take 50/25/25 percent of the data to train/validate/test
 X_train,X_test,Y_train,Y_test = train_test_split(X,Y, train_size=0.75, shuffle=True,random_state=1004)
@@ -77,8 +77,8 @@ print(X_test.shape[0], 'test samples')
 # Chans, Samples  : number of channels and time points in the EEG data
 # configure the EEGNet-8,2,16 model with kernel length of 32 samples (other
 # model configurations may do better, but this is a good starting point)
-model = EEGNet(nb_classes = 2, Chans = chans, Samples = samples,
-               dropoutRate = 0.5, kernLength = 256, F1 = 8, D = 2, F2 = 16,
+model = EEGNet_test(nb_classes = 2, Chans = chans, Samples = samples,
+               dropoutRate = 0.5, kernLength = 256, F1 = 4, D = 2, F2 = 8,
                dropoutType = 'Dropout')
 
 # compile the model and set the optimizers
@@ -108,7 +108,7 @@ class_weights = {0 :1, 1 :1}
 # pretty noisy run-to-run, but most runs should be comparable to xDAWN +
 # Riemannian geometry classification (below)
 ################################################################################
-hist = model.fit(X_train, Y_train, batch_size = 16, epochs = 150,
+hist = model.fit(X_train, Y_train, batch_size = 16, epochs = 300,
                  verbose = 2, validation_split=0.33, shuffle=True,
                  callbacks=[checkpointer], class_weight = class_weights)
 

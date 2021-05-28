@@ -57,7 +57,7 @@ labels = epochs.events[:, -1]
 # extract raw data. scale by 1000 due to scaling sensitivity in deep learning
 X = epochs.get_data()*1000 # format is in (trials, channels, samples)
 y = labels
-
+print(X)
 kernels, chans, samples = 1, 60, 151
 
 # take 50/25/25 percent of the data to train/validate/test
