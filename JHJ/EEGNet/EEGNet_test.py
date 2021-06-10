@@ -18,24 +18,18 @@ from tensorflow.keras import backend as K
 #from sklearn.pipeline import make_pipeline
 #from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import KFold
+
 # tools for plotting confusion matrices
 from matplotlib import pyplot as plt
-
-
-
-# tf.debugging.set_log_device_placement(True)
-
-# 텐서를 CPU에 할당
 
 # while the default tensorflow ordering is 'channels_last' we set it here
 # to be explicit in case if the user has changed the default ordering
 K.set_image_data_format('channels_last')
 
 ##################### Process, filter and epoch the data ######################
-dpath = "D:/Artigence/data/s11/s11_pir.set"
+dpath = "D:/Artigence/data/s05/s05_pir.set"
 eeglab_raw  = mne.io.read_raw_eeglab(dpath)
-print(eeglab_raw.annotations[1])
+#print(eeglab_raw.annotations[1])
 print(len(eeglab_raw.annotations))
 print(set(eeglab_raw.annotations.duration))
 print(set(eeglab_raw.annotations.description))
@@ -51,11 +45,10 @@ epochs = mne.Epochs(eeglab_raw, events_from_annot, event_id, tmin, tmax,baseline
 labels = epochs.events[:,-1]
 
 X = epochs.get_data( )  # format is in (trials, channels, samples)
-X = np.hstack((X[:,8:25,:] , X[:,43:62,:]))
 Y = labels
 
 
-kernels, chans, samples = 1, 36, 1536
+kernels, chans, samples = 1, 64, 1536
 
 # take 50/25/25 percent of the data to train/validate/test
 #X_train      = X[0:100,]
@@ -84,7 +77,7 @@ print('X_train shape:', X_train.shape)
 print(X_train.shape[0], 'train samples')
 print(X_test.shape[0], 'test samples')
 
-kfold = KFold(n_splits=4, shuffle=True, random_state=0)
+#kfold = KFold(n_splits=4, shuffle=True, random_state=0)
 
 # Chans, Samples  : number of channels and time points in the EEG data
 # configure the EEGNet-8,2,16 model with kernel length of 32 samples (other
@@ -161,6 +154,7 @@ acc_ax.set_ylabel('accuray')
 
 loss_ax.legend(loc='upper left')
 acc_ax.legend(loc='lower left')
+plt.text(0,1.05,"Classification accuracy: %f " % acc)
 
 plt.show()
 
