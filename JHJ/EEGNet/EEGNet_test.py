@@ -45,6 +45,7 @@ epochs = mne.Epochs(eeglab_raw, events_from_annot, event_id, tmin, tmax,baseline
 labels = epochs.events[:,-1]
 
 X = epochs.get_data( )  # format is in (trials, channels, samples)
+X = np.hstack((X[:,8:25,:] , X[:,43:62,:]))
 Y = labels
 
 
