@@ -158,7 +158,7 @@ for iSub = 1 : nSub
     
     pop_saveset(EEG,'filepath',[dPath subId],'filename',[fileId(1:end-4) '_pir.set']);
     
-   
+    EEG = eeg_emptyset
     end
 
  %% load .set file
