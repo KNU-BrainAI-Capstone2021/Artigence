@@ -18,18 +18,23 @@ from tensorflow.keras import backend as K # keras 백엔드 API
 '''
 
 # PyRiemann imports / PyRiemann : scikit-learn API 기반의 파이썬 머신 러닝 라이브러리 / Covariance Matrices(공분산 행렬 ; 2개의 확률변수의 선형 관계)의 조작과 그를 통한 다변량 신호들(특히 바이오 신호. ex. EEG)의 분류를 위한 라이브러리
-from pyriemann.estimation import XdawnCovariances 
-from pyriemann.tangentspace import TangentSpace 
-from pyriemann.utils.viz import plot_confusion_matrix 
-from sklearn.pipeline import make_pipeline 
-from sklearn.linear_model import LogisticRegression 
+from pyriemann.estimation import XdawnCovariances # Compute xdawn, project the signal and compute the covariances
+from pyriemann.tangentspace import TangentSpace # Tangent space project TransformerMixin
+from pyriemann.utils.viz import plot_confusion_matrix # Plot the confusion matrix
+from sklearn.pipeline import make_pipeline # Construct a Pipeline from the given estimators
+from sklearn.linear_model import LogisticRegression # Logistic Regression classifier.
+'''
+- TransformerMixin : Mixin class for all transformers in scikit-learn. 이 클래스는 fit(),transform()메서드를 나만의 변환기에 생성하였을 경우 마지막 메서드인 fit_transform()를 자동으로 생성
+- Pipeline : 여러가지의 변환기들을 하나로 연결
+- Logistic Regression (로지스틱 회귀) : 변수를 입력할 경우 이를 0~1의 범위로 변환 후 이를 통해서 확률값을 계산하고 마지막으로 분류(어떤 클래스에 대한 확률이 가장 높은지 계산)하는 지도 학습 알고리즘.
+'''
 
 # tools for plotting confusion matrices (confusion matrix : 지도 학습으로 훈련된 분류 알고리즘의 성능을 시각화한 표 / 행과 열은 각각 예측 된 클래스의 인스턴스와 실제 클래스의 인스턴스를 나타냄)
 from matplotlib import pyplot as plt # matplotlib : 파이썬 기반의 시각화 라이브러리. 여러 가지 그래프를 그려주는 함수들 내장.
 
 # while the default tensorflow ordering is 'channels_last' we set it here 
 # to be explicit in case if the user has changed the default ordering
-K.set_image_data_format(‘channels_last’) # K.set_image_data_format(‘channels_last’)
+K.set_image_data_format(‘channels_last’) # Sets the value of the image data format convention.
 
 ## Process, filter and epoch the data ##
 data_path = sample.data_path() # mne.datasets.sample.data_path : 샘플 데이터셋의 복사본의 로컬 경로를 가져오는 함수
