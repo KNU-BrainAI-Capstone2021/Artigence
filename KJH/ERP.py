@@ -18,6 +18,8 @@ from tensorflow.keras import backend as K # keras 백엔드 API
 '''
 
 # PyRiemann imports / PyRiemann : scikit-learn API 기반의 파이썬 머신 러닝 라이브러리 / Covariance Matrices(공분산 행렬 ; 2개의 확률변수의 선형 관계)의 조작과 그를 통한 다변량 신호들(특히 바이오 신호. ex. EEG)의 분류를 위한 라이브러리
+# Decoding applied to EEG data in sensor space decomposed using Xdawn. 
+# After spatial filtering, covariances matrices are estimated, then projected in the tangent space and classified with a logistic regression.
 from pyriemann.estimation import XdawnCovariances # Compute xdawn, project the signal and compute the covariances
 from pyriemann.tangentspace import TangentSpace # Tangent space project TransformerMixin
 from pyriemann.utils.viz import plot_confusion_matrix # Plot the confusion matrix
