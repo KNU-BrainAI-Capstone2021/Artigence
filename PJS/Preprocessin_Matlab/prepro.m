@@ -1,3 +1,6 @@
+close all
+clear
+clc
 %% SET PATH
 MainPath = ['/Users/jaeseongpark/Desktop/Dataset/'];
 addpath([MainPath 'eeglab2021.0']);
@@ -19,7 +22,7 @@ highCut=50;
 for iSub = 1 : nSub
     
     subId = subStruct(iSub).name;
-    fileStruct = dir([subId  '/*.mat']);
+    fileStruct = dir([subId  '/s22.mat']);
     fileId = fileStruct(1).name;
     load_path = strcat(dPath,subId,"/",fileId);
     disp(['Sub ' num2str(iSub) ' Loading......... ' fileId]);
@@ -35,6 +38,14 @@ for iSub = 1 : nSub
     EEG.data = [load_Data.imagery_left(1:64,:) load_Data.imagery_right(1:64,:)];
     EEG.srate = load_Data.srate;
     EEG.chanlocs = readlocs('biosemi64.ced');
+%     EEG.chanlocs(57:64) = []
+%     EEG.chanlocs(33:38) = []
+%     EEG.chanlocs(20:30) = []
+%     EEG.chanlocs(1:7) = []
+%     EEG.data(57:64,:) = []
+%     EEG.data(33:38,:) = []
+%     EEG.data(20:30,:) = []
+%     EEG.data(1:7,:) = []
     EEG=eeg_checkset(EEG);
     
     
@@ -48,7 +59,7 @@ for iSub = 1 : nSub
             EEG.event(count).type = 'left';
             EEG.event(count).latency = i;
 %             EEG.event(count).epoch = count;
-%             count = count+ 1;
+             count = count+ 1;
         end
     end
     for i = 1:358400
@@ -56,7 +67,7 @@ for iSub = 1 : nSub
             EEG.event(count).type = 'right';
             EEG.event(count).latency = 358400+i;
 %             EEG.event(count).epoch = count;
-%             count = count+ 1;
+             count = count+ 1;
         end
     end
     % BPF
@@ -84,16 +95,6 @@ for iSub = 1 : nSub
     %x_test = a([46:50 96:100],:,:);
     %y_test = [zeros(5,1);ones(5,1)];
     % ASR
-   
-    %Z.fieldname = "Z"
-%     for i = 1:64
-%         EEG.chanlocs(i).labels = char(chan_labels(i))
-%         EEG.chanlocs(i).X = load_Data.psenloc(i,1); 
-%         EEG.chanlocs(i).Y = load_Data.psenloc(i,2);
-%         EEG.chanlocs(i).Z = load_Data.psenloc(i,3);
-%         EEG.chanlocs(i).urchan = i;
-%     end
-%     size(EEG.data)
     EEG.etc.historychanlocs=EEG.chanlocs;
     %EEG_left.etc.historychaninfo=EEG_left.chaninfo;
     
@@ -101,19 +102,19 @@ for iSub = 1 : nSub
     %     EEG.etc.badchan=find(EEG.etc.clean_channel_mask==0); %Bad chananel information from ASR
     EEG.etc.originalEEG=EEG; % keep origianl EEG before interpolation
     EEG = pop_interp(EEG, EEG.etc.historychanlocs, 'spherical');
-%     
+    
  
-%     
+%    pop_saveset(EEG,'filepath',[dPath subId],'filename',[fileId(1:end-4) '_a.set']);
 %     % CAR
     EEG = pop_reref( EEG, []);
     
-    pop_saveset(EEG,'filepath',[dPath subId],'filename',[fileId(1:end-4) '_p.set']);
+    %pop_saveset(EEG,'filepath',[dPath subId],'filename',[fileId(1:end-4) '_p.set']);
     
     
 %     % ICA
     EEG.rank=rank(double(EEG.data));
     EEG = pop_runica(EEG,'extended',1,'pca',EEG.rank);
-    pop_saveset(EEG,'filepath',[dPath subId],'filename',[fileId(1:end-4) '_pi.set']);
+   % pop_saveset(EEG,'filepath',[dPath subId],'filename',[fileId(1:end-4) '_pi.set']);
     
     % IC Label
     EEG = pop_iclabel(EEG, 'default');
