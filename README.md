@@ -51,7 +51,7 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 ![image](https://user-images.githubusercontent.com/72614541/122766803-e44fb880-d2dc-11eb-87b0-8b3cd64265c0.png)
 ![image](https://user-images.githubusercontent.com/72614541/122766822-e87bd600-d2dc-11eb-826d-2ca4c946bdd6.png)
 
-# How to Preprocessing
+# How to Preprocess Dataset
 BPF, ASR, CAR, ICA in Matlab
 
 ![image](https://user-images.githubusercontent.com/72614541/122767216-5f18d380-d2dd-11eb-9744-5ec11db09069.png)
@@ -67,8 +67,15 @@ CNN
 ![image](https://user-images.githubusercontent.com/72614541/122766924-0ba68580-d2dd-11eb-8cfd-e0117c8dc8a1.png)
 ![image](https://user-images.githubusercontent.com/72614541/122766936-0f3a0c80-d2dd-11eb-8e68-5edfdf063bd5.png)
 
-
-
-
-
-
+# How to try to improve performance in EEGnet Models?
+1. epochs.get_data()*1 → epochs.get_data()*1000 
+   Why? Matlab에서 preprocessing한 데이터를 불러와보니 값들이 10^-4 or 10^-5 [V] 단위로 설정되어있다.
+   우리가 원하는 Action potential은 보통 70[mV]단위이므로 *1000을 해주어서 단위를 맞춰주어 Performance가 향상 되었다.
+2. Dropout rate 0.5 → 0.8 & EarlyStop
+   Why? Performance를 보면 Training Accuracy가 과도하게 높아져 Validation Accuracy가 Overfitting의 결과로 떨어졌다.
+   그래서 OverFitting 방지를 위해 Dropout과 Early Stopping을 실시해보았다
+3. AverageFoolingConv size(1,16),AverageFoolingConv size(1,16) → AverageFoolingConv size(1,8),AverageFoolingConv size(1,4)
+4. Sampling and Hz 조절
+   Why? 우리가 EEGnet에서 주로 사용하고자 하는 주파수 대역은 8~12 Hz이므로 그것을 전처리에 Low Hz, High Hz를 8Hz,12Hz로 설정해    주면 Performance가 향상되나 이 방법은 딥러닝의 취지에 벗어나 사용할 수 없었다. 
+5. Cross Validation Testset
+   - 논문에서 Performance 향상을 위해 사용한 방법으로 우리도 k-fold validation을 이용해 Performance를 올릴 수 있었다.
