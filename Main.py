@@ -1,3 +1,9 @@
+"""
+Name : Artigence
+Data : 2021.06.22
+source : https://github.com/vlawhern/arl-eegmodels
+"""
+
 import numpy as np
 import tensorflow as tf
 import mne
