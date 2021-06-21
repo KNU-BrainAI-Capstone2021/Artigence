@@ -44,8 +44,26 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 | 6/22 | 최종 아이디어 회의 & PPT 최종 완성 & 발표 준비 |
 | 6/23 | 1학기 최종 발표 및 교수님 최종 Feedback 및 보완 및 개선 |
 
-# 주간 회의 사진
+# Idea meeting picture
 ![image](https://user-images.githubusercontent.com/72614541/122766549-a3f03a80-d2dc-11eb-9dbb-e2bf17c39525.png),![image](https://user-images.githubusercontent.com/72614541/122766578-ace10c00-d2dc-11eb-81f0-14bbf47b1005.png)
+
+# DataSet we used
+![image](https://user-images.githubusercontent.com/72614541/122766803-e44fb880-d2dc-11eb-87b0-8b3cd64265c0.png)
+![image](https://user-images.githubusercontent.com/72614541/122766822-e87bd600-d2dc-11eb-826d-2ca4c946bdd6.png)
+
+# How to Preprocessing
+BPF, ASR, CAR, ICA in Matlab
+![image](https://user-images.githubusercontent.com/72614541/122767216-5f18d380-d2dd-11eb-9744-5ec11db09069.png)
+
+# NetWork we used 
+EEGNET – A compact CNN architecture for EEG-based BCIs
+![image](https://user-images.githubusercontent.com/72614541/122766967-182ade00-d2dd-11eb-8a50-e0b221d4769f.png)
+![image](https://user-images.githubusercontent.com/72614541/122767072-38f33380-d2dd-11eb-83e7-ce075a5b49c1.png)
+CNN
+![image](https://user-images.githubusercontent.com/72614541/122766924-0ba68580-d2dd-11eb-8cfd-e0117c8dc8a1.png)
+![image](https://user-images.githubusercontent.com/72614541/122766936-0f3a0c80-d2dd-11eb-8e68-5edfdf063bd5.png)
+
+
 
 
 
