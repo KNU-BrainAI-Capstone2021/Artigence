@@ -44,6 +44,9 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 | 6/22 | 최종 아이디어 회의 & PPT 최종 완성 & 발표 준비 |
 | 6/23 | 1학기 최종 발표 및 교수님 최종 Feedback 및 보완 및 개선 |
 
+# Our Workplan
+![image](https://user-images.githubusercontent.com/72614541/122770462-6db4ba00-d2e0-11eb-9230-926679be6caa.png)
+
 # Idea meeting picture
 ![image](https://user-images.githubusercontent.com/72614541/122766549-a3f03a80-d2dc-11eb-9dbb-e2bf17c39525.png),![image](https://user-images.githubusercontent.com/72614541/122766578-ace10c00-d2dc-11eb-81f0-14bbf47b1005.png)
 
