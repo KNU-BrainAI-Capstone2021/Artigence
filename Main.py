@@ -8,11 +8,7 @@ from tensorflow.keras import utils as np_utils
 from tensorflow.keras import backend as K
 
 # PyRiemann imports
-from pyriemann.estimation import XdawnCovariances
-from pyriemann.tangentspace import TangentSpace
 from pyriemann.utils.viz import plot_confusion_matrix
-from sklearn.pipeline import make_pipeline
-from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, KFold
 
 # tools for plotting confusion matrices
@@ -45,18 +41,19 @@ for i in range(1,31):
     tmax = 2.9980
     epochs = mne.Epochs(eeglab_raw, events_from_annot, event_id, tmin, tmax,baseline = None)
     labels = epochs.events[:,-1]
-    #data
+    #data *1000 mV to V
     X = epochs.get_data( )*1000 # format is in (trials, channels, samples)
     Y = labels
-
+    #samples = 3sec * 512Hz sampling rate
     kernels, chans, samples = 1, 64, 1536
+
     for train_index, test_index in kf.split(X):
         X_train = X[train_index]
         Y_train = Y[train_index]
         print("x_train_shape", X_train.shape)
         X_test = X[test_index]
         Y_test = Y[test_index]
-        # take 50/25/25 percent of the data to train/validate/test
+
 
         ############################# EEGNet portion ##################################
         # convert labels to one-hot encodings.
@@ -68,38 +65,32 @@ for i in range(1,31):
         X_train      = X_train.reshape(X_train.shape[0], chans, samples, kernels)
         X_test       = X_test.reshape(X_test.shape[0], chans, samples, kernels)
 
+        # take 50/25/25 percent of the data to train/validate/test
         X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, train_size=0.67, shuffle=True,
                                                           random_state=1004)
-        # Chans, Samples  : number of channels and time points in the EEG data
-        # configure the EEGNet-8,2,16 model with kernel length of 32 samples (other
-        # model configurations may do better, but this is a good starting point)
+
+
         early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=100)
+        # Chans, Samples  : number of channels and time points in the EEG data
+        # kernelLength : half of data sampling rate
         model = EEGNet(nb_classes = 2, Chans = chans, Samples = samples,
                        dropoutRate = 0.8, kernLength = 256, F1 = 4, D = 2, F2 = 8,
                        dropoutType = 'Dropout')
 
-        # compile the model and set the optimizers
-        model.compile(loss='categorical_crossentropy', optimizer='adam',
+        # compile the model and set the optimizers using binary-cross entropy
+        model.compile(loss='binary_crossentropy', optimizer='adam',
                       metrics = ['accuracy'])
         model.summary()
         # count number of parameters in the model
         numParams    = model.count_params()
 
-        ###############################################################################
-        # if the classification task was imbalanced (significantly more trials in one
-        # class versus the others) you can assign a weight to each class during
-        # optimization to balance it out. This data is approximately balanced so we
-        # don't need to do this, but is shown here for illustration/completeness.
-        ###############################################################################
-
+        ##############################################################################
         # the syntax is {class_1:weight_1, class_2:weight_2,...}. Here just setting
         # the weights all to be 1
         class_weights = {0 :1, 1 :1}
 
         ################################################################################
-        # fit the model. Due to very small sample sizes this can get
-        # pretty noisy run-to-run, but most runs should be comparable to xDAWN +
-        # Riemannian geometry classification (below)
+        # fit the model
         ################################################################################
         hist = model.fit(X_train, Y_train, batch_size = 16, epochs = 150,
                          verbose = 2, validation_data=(X_val,Y_val), shuffle=True,
@@ -141,9 +132,9 @@ for i in range(1,31):
         count = count+1
 
         ##########################################
-        #sh
+        #show Confusion_matrix
         ##########################################
-        names        = ['hand left', 'hand right']
+        names = ['hand left', 'hand right']
         plt.figure()
         plot_confusion_matrix(preds, Y_test.argmax(axis = -1), names, title = 'EEGNet-8,2')
         #plt.show()
