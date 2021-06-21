@@ -50,7 +50,7 @@ from tensorflow.keras import backend as K
 
 
 def EEGNet_test(nb_classes, Chans=64, Samples=128,
-           dropoutRate=0.5, kernLength=64, F1=8,
+           dropoutRate=0.5, kernLength=256, F1=8,
            D=2, F2=16, norm_rate=0.25, dropoutType='Dropout'):
     """ Keras Implementation of EEGNet
     http://iopscience.iop.org/article/10.1088/1741-2552/aace8c/meta
@@ -126,26 +126,29 @@ def EEGNet_test(nb_classes, Chans=64, Samples=128,
                     input_shape=(Chans, Samples, 1),
                     use_bias=False)(input1)
     block1 = BatchNormalization()(block1)
-    block1 = DepthwiseConv2D((Chans, 1), use_bias=False,
+
+    block1 = DepthwiseConv2D((Chans, 32), use_bias=False,
                              depth_multiplier=D,
                              depthwise_constraint=max_norm(1.))(block1)
     block1 = BatchNormalization()(block1)
-    block1 = Activation('elu')(block1)
-    block1 = AveragePooling2D((1, 16))(block1)
+    block1 = Activation('ReLU')(block1)
+    block1 = AveragePooling2D((1, 8))(block1)
     block1 = dropoutType(dropoutRate)(block1)
 
-    block2 = SeparableConv2D(F2, (1, 64),
+    block2 = SeparableConv2D(F2, (1, 32),
                              use_bias=False, padding='same')(block1)
     block2 = BatchNormalization()(block2)
-    block2 = Activation('elu')(block2)
-    block2 = AveragePooling2D((1, 16))(block2)
+    block2 = Activation('ReLU')(block2)
+    block2 = AveragePooling2D((1, 4))(block2)
     block2 = dropoutType(dropoutRate)(block2)
 
     flatten = Flatten(name='flatten')(block2)
 
-    dense = Dense(nb_classes, name='dense',
+    dense2 = Dense(nb_classes, name='dense2',
                   kernel_constraint=max_norm(norm_rate))(flatten)
-    softmax = Activation('softmax', name='softmax')(dense)
+
+
+    softmax = Activation('softmax', name='softmax')(dense2)
 
     return Model(inputs=input1, outputs=softmax)
 
@@ -190,46 +193,6 @@ def EEGNet(nb_classes, Chans=64, Samples=128,
 
     return Model(inputs=input1, outputs=softmax)
 
-
-def EEGNet(nb_classes, Chans=64, Samples=128,
-           dropoutRate=0.5, kernLength=64, F1=8,
-           D=2, F2=16, norm_rate=0.25, dropoutType='Dropout'):
-    if dropoutType == 'SpatialDropout2D':
-        dropoutType = SpatialDropout2D
-    elif dropoutType == 'Dropout':
-        dropoutType = Dropout
-    else:
-        raise ValueError('dropoutType must be one of SpatialDropout2D '
-                         'or Dropout, passed as a string.')
-
-    input1 = Input(shape=(Chans, Samples, 1))
-    print("input shape", input1.shape, Chans, Samples, kernLength)
-    ##################################################################
-    block1 = Conv2D(F1, (1, kernLength), padding='same',
-                    input_shape=(Chans, Samples, 1),
-                    use_bias=False)(input1)
-    block1 = BatchNormalization()(block1)
-    block1 = DepthwiseConv2D((Chans, 1), use_bias=False,
-                             depth_multiplier=D,
-                             depthwise_constraint=max_norm(1.))(block1)
-    block1 = BatchNormalization()(block1)
-    block1 = Activation('elu')(block1)
-    block1 = AveragePooling2D((1, 4))(block1)
-    block1 = dropoutType(dropoutRate)(block1)
-
-    block2 = SeparableConv2D(F2, (1, 16),
-                             use_bias=False, padding='same')(block1)
-    block2 = BatchNormalization()(block2)
-    block2 = Activation('elu')(block2)
-    block2 = AveragePooling2D((1, 8))(block2)
-    block2 = dropoutType(dropoutRate)(block2)
-    flatten = Flatten(name='flatten')(block2)
-
-    dense = Dense(nb_classes, name='dense',
-                  kernel_constraint=max_norm(norm_rate))(flatten)
-    softmax = Activation('softmax', name='softmax')(dense)
-
-    return Model(inputs=input1, outputs=softmax)
 
 
 def EEGNet_SSVEP(nb_classes=12, Chans=8, Samples=256,

@@ -1,5 +1,8 @@
-
-
+"""
+mne에서 tutorial로 제공하는 MI Dataset으로 EEGNet돌려보기
+Requirments
+mne = 0.17.1
+"""
 import numpy as np
 import tensorflow as tf
 # mne imports
@@ -19,79 +22,90 @@ from pyriemann.tangentspace import TangentSpace
 from pyriemann.utils.viz import plot_confusion_matrix
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LogisticRegression
-
+from sklearn.model_selection import train_test_split
 # tools for plotting confusion matrices
 from matplotlib import pyplot as plt
 
-#tf.debugging.set_log_device_placement(True)
+import numpy as np
+import matplotlib.pyplot as plt
 
-# 텐서를 CPU에 할당
+from mne import Epochs, pick_types, find_events
+from mne.channels import read_layout
+from mne.io import concatenate_raws, read_raw_edf
+from mne.datasets import eegbci
+from mne.decoding import CSP
 
-# while the default tensorflow ordering is 'channels_last' we set it here
-# to be explicit in case if the user has changed the default ordering
-K.set_image_data_format('channels_last')
+print(__doc__)
 
-##################### Process, filter and epoch the data ######################
+# #############################################################################
+# # Set parameters and read data
 
+# avoid classification of evoked responses by using epochs that start 1s after
+# cue onset.
+tmin, tmax = -1., 4.
+event_id = dict(left=2, right=3)
+subject = [1,2,3,4,5]
+runs = [4, 8, 12]  # motor imagery: hands vs feet
 
-data_path = sample.data_path()
+raw_fnames = [eegbci.load_data(s, runs) for s in subject]
+print(raw_fnames)
+X=[]
+y=[]
+for i in range(len(subject)):
+    raw_files = [read_raw_edf(f, preload=True) for f in raw_fnames[i]]
+    raw = concatenate_raws(raw_files)
+     # strip channel names of "." characters
+    raw.rename_channels(lambda x: x.strip('.'))
 
-# Set parameters and read data
-raw_fname = data_path + '/MEG/sample/sample_audvis_filt-0-40_raw.fif'
-event_fname = data_path + '/MEG/sample/sample_audvis_filt-0-40_raw-eve.fif'
-tmin, tmax = -0., 1
-event_id = dict(aud_l=1, aud_r=2, vis_l=3, vis_r=4)
+    # Apply band-pass filter
+    raw.filter(7., 30., method='iir')
 
-# Setup for reading the raw data
-raw = io.Raw(raw_fname, preload=True, verbose=False)
-raw.filter(2, None, method='iir')  # replace baselining with high-pass
-events = mne.read_events(event_fname)
+    events = find_events(raw, shortest_event=0, stim_channel='STI 014')
 
-raw.info['bads'] = ['MEG 2443']  # set bad channels
-picks = mne.pick_types(raw.info, meg=False, eeg=True, stim=False, eog=False,
+    picks = pick_types(raw.info, meg=False, eeg=True, stim=False, eog=False,
                        exclude='bads')
 
-# Read epochs
-epochs = mne.Epochs(raw, events, event_id, tmin, tmax, proj=False,
-                    picks=picks, baseline=None, preload=True, verbose=False)
-labels = epochs.events[:, -1]
+    # Read epochs (train will be done only between 1 and 2s)
+    # Testing will be done with a running classifier
+    epochs = Epochs(raw, events, event_id, tmin, tmax, proj=True, picks=picks,
+                    baseline=None, preload=True)
+    epochs_train = epochs.crop(tmin=1., tmax=2.)
+    labels = epochs.events[:, -1] - 2
 
-# extract raw data. scale by 1000 due to scaling sensitivity in deep learning
-X = epochs.get_data()*1000 # format is in (trials, channels, samples)
-y = labels
-kernels, chans, samples = 1, 60, 151
+
+    # extract raw data. scale by 1000 due to scaling sensitivity in deep learning
+    #(45,64,161)
+    data = epochs.get_data()*1000 # format is in (trials, channels, samples)
+    X.extend(data)
+    y.extend(labels+1)
+X = np.array(X)
+y = np.array(y)
+print(len(X))
+kernels, chans, samples = 1, 64, 161
 
 # take 50/25/25 percent of the data to train/validate/test
-X_train      = X[0:144,]
-Y_train      = y[0:144]
-X_validate   = X[144:216,]
-Y_validate   = y[144:216]
-X_test       = X[216:,]
-Y_test       = y[216:]
-
+X_train,X_test,Y_train,Y_test = train_test_split(X,y, train_size=0.75, shuffle=True,random_state=1004)
 
 ############################# EEGNet portion ##################################
 
 # convert labels to one-hot encodings.
-Y_train      = np_utils.to_categorical(Y_train-1)
-Y_validate   = np_utils.to_categorical(Y_validate-1)
-Y_test       = np_utils.to_categorical(Y_test-1)
-
+Y_train      = np_utils.to_categorical(Y_train -1)
+#Y_validate   = np_utils.to_categorical(Y_validate -1)
+Y_test       = np_utils.to_categorical(Y_test -1)
 # convert data to NHWC (trials, channels, samples, kernels) format. Data
 # contains 60 channels and 151 time-points. Set the number of kernels to 1.
 X_train      = X_train.reshape(X_train.shape[0], chans, samples, kernels)
-X_validate   = X_validate.reshape(X_validate.shape[0], chans, samples, kernels)
+#X_validate   = X_validate.reshape(X_validate.shape[0], chans, samples, kernels)
 X_test       = X_test.reshape(X_test.shape[0], chans, samples, kernels)
 
 print('X_train shape:', X_train.shape)
 print(X_train.shape[0], 'train samples')
 print(X_test.shape[0], 'test samples')
-
 # Chans, Samples  : number of channels and time points in the EEG data
 # configure the EEGNet-8,2,16 model with kernel length of 32 samples (other
 # model configurations may do better, but this is a good starting point)
 # kernels, chans, samples = 1, 60, 151
-model = EEGNet(nb_classes = 4, Chans = chans, Samples = samples,
+model = EEGNet(nb_classes = 2, Chans = chans, Samples = samples,
                dropoutRate = 0.5, kernLength = 32, F1 = 16, D = 2, F2 = 32,
                dropoutType = 'Dropout')
 
@@ -103,8 +117,6 @@ model.summary()
 numParams    = model.count_params()
 
 # set a valid path for your system to record model checkpoints
-checkpointer = ModelCheckpoint(filepath='C:/Users/PC/PycharmProjects/Artigence/PJS/EEGNet_test/tmp/variables/checkpoints.h2', verbose=1,
-                               save_best_only=True)
 
 ###############################################################################
 # if the classification task was imbalanced (significantly more trials in one
@@ -115,7 +127,7 @@ checkpointer = ModelCheckpoint(filepath='C:/Users/PC/PycharmProjects/Artigence/P
 
 # the syntax is {class_1:weight_1, class_2:weight_2,...}. Here just setting
 # the weights all to be 1
-class_weights = {0:1, 1:1, 2:1, 3:1}
+class_weights = {0:1, 1:1}
 
 ################################################################################
 # fit the model. Due to very small sample sizes this can get
@@ -123,10 +135,11 @@ class_weights = {0:1, 1:1, 2:1, 3:1}
 # Riemannian geometry classification (below)
 ################################################################################
 hist = model.fit(X_train, Y_train, batch_size = 16, epochs = 300,
-                        verbose = 2, validation_data=(X_validate, Y_validate))
+                        verbose = 2,validation_split=0.33,
+                     class_weight = class_weights)
 
 # load optimal weights
-#model.load_weights('C:/Users/PC/PycharmProjects/Artigence/PJS/EEGNet_test/tmp/variables/checkpoints.h2')
+
 
 ###############################################################################
 # can alternatively used the weights provided in the repo. If so it should get
@@ -216,5 +229,5 @@ plt.show()
 # acc_ax.legend(loc='lower left')
 #
 # plt.show()
-# print("end")
-#
+print("end")
+

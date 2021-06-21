@@ -31,7 +31,7 @@ from matplotlib import pyplot as plt
 K.set_image_data_format('channels_last')
 
 ##################### Process, filter and epoch the data ######################
-dpath = "C:/Users/USER/OneDrive - knu.ac.kr/Data/s01_pir.set"
+dpath = "C:/Users/PC/OneDrive - knu.ac.kr/Data/s01_pir.set"
 eeglab_raw  = mne.io.read_raw_eeglab(dpath)
 print(eeglab_raw.annotations[1])
 print(len(eeglab_raw.annotations))
@@ -89,7 +89,7 @@ model.summary()
 numParams    = model.count_params()
 
 # set a valid path for your system to record model checkpoints
-checkpointer = ModelCheckpoint(filepath='C:\\Users\\USER\\PycharmProjects\\eegnet\\tmp\\checkpoint2.h5', verbose=1,
+checkpointer = ModelCheckpoint(filepath='C:\\Users\\PC\\PycharmProjects\\artigence/pjs/eegnet_test\\tmp\\checkpoint2.h5', verbose=1,
                                save_best_only=True)
 
 ###############################################################################
@@ -113,7 +113,7 @@ hist = model.fit(X_train, Y_train, batch_size = 16, epochs = 300,
                  callbacks=[checkpointer], class_weight = class_weights)
 
 # load optimal weights
-model.load_weights('C:\\Users\\USER\\PycharmProjects\\eegnet\\tmp\\checkpoint2.h5')
+model.load_weights('C:\\Users\\PC\\PycharmProjects\\artigence/PJS/EEGNet_test\\tmp\\checkpoint2.h5')
 
 ###############################################################################
 # can alternatively used the weights provided in the repo. If so it should get
