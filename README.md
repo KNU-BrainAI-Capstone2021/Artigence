@@ -1,5 +1,7 @@
 # 2021 KNU 전자공학설계 팀프로젝트
 ### _Artigence_ - _딥러닝을 활용한 BCI기반 기술 응용_
+![image](https://user-images.githubusercontent.com/48755184/122780292-aefd9780-d2e9-11eb-8943-8208c790def2.png)
+
 ### Members 
 - _Jae Seong Park_ 
 - _Ji Hye Kim_
@@ -17,7 +19,6 @@
 # Tech
 ![github badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github)     ![python](https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white) ![tensorflow](https://img.shields.io/badge/Tensorflow-orange?style=flat-square&logo=Tensorflow&logoColor=white)       
 
-![image](https://user-images.githubusercontent.com/48755184/122780292-aefd9780-d2e9-11eb-8943-8208c790def2.png)
 
 공개 MI dataset을 이용하여 Python 및 Tensorflow를 통해 EEGNET을 학습시켜 BMI 설계 및 제작    
 Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.ac.kr/opensource/opendb/)
