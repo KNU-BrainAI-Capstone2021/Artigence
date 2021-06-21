@@ -57,9 +57,11 @@ BPF, ASR, CAR, ICA in Matlab
 
 # NetWork we used 
 EEGNET – A compact CNN architecture for EEG-based BCIs
+
 ![image](https://user-images.githubusercontent.com/72614541/122766967-182ade00-d2dd-11eb-8a50-e0b221d4769f.png)
 ![image](https://user-images.githubusercontent.com/72614541/122767072-38f33380-d2dd-11eb-83e7-ce075a5b49c1.png)
 CNN
+
 ![image](https://user-images.githubusercontent.com/72614541/122766924-0ba68580-d2dd-11eb-8cfd-e0117c8dc8a1.png)
 ![image](https://user-images.githubusercontent.com/72614541/122766936-0f3a0c80-d2dd-11eb-8e68-5edfdf063bd5.png)
 
