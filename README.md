@@ -1,6 +1,6 @@
 # 2021 KNU 전자공학설계 팀프로젝트
 ### _Artigence_ - _딥러닝을 활용한 BCI기반 기술 응용_
-![title](https://user-images.githubusercontent.com/48755184/122780292-aefd9780-d2e9-11eb-8943-8208c790def2.png){: width="30" height="30"}
+![title](https://user-images.githubusercontent.com/48755184/122780292-aefd9780-d2e9-11eb-8943-8208c790def2.png)
 
 ### Members 
 - _Jae Seong Park_ 
