@@ -6,7 +6,7 @@ from mne import io
 from mne.datasets import sample
 
 # EEGNet-specific imports
-from EEGModels import EEGNet_test
+from EEGModels import EEGNet_new
 from tensorflow.keras import utils as np_utils
 from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow.keras import backend as K
@@ -83,9 +83,9 @@ for i in range(1,26):
         # Chans, Samples  : number of channels and time points in the EEG data
         # configure the EEGNet-8,2,16 model with kernel length of 32 samples (other
         # model configurations may do better, but this is a good starting point)
-        early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=40)
-        model = EEGNet_test(nb_classes = 2, Chans = chans, Samples = samples,
-                       dropoutRate = 0.8, kernLength = 256, F1 = 4, D = 2, F2 = 8,
+        early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=30)
+        model = EEGNet_new(nb_classes = 2, Chans = chans, Samples = samples,
+                       dropoutRate = 0.8, kernLength = 256, F1 = 2, D = 4, F2 = 8,
                        dropoutType = 'Dropout')
 
         # compile the model and set the optimizers
@@ -115,7 +115,7 @@ for i in range(1,26):
         # pretty noisy run-to-run, but most runs should be comparable to xDAWN +
         # Riemannian geometry classification (below)
         ################################################################################
-        hist = model.fit(X_train, Y_train, batch_size = 16, epochs = 150,
+        hist = model.fit(X_train, Y_train, batch_size = 32, epochs = 150,
                          verbose = 2, validation_data=(X_val,Y_val), shuffle=True,
                          class_weight = class_weights, callbacks = [early_stopping])
 
@@ -156,6 +156,7 @@ for i in range(1,26):
 
         loss_ax.legend(loc='upper left')
         acc_ax.legend(loc='lower left')
+        #plt.show()
         ############################# PyRiemann Portion ##############################
 
         # code is taken from PyRiemann's ERP sample script, which is decoding in
@@ -195,9 +196,9 @@ for i in range(1,26):
 
         loss_ax.legend(loc='upper left')
         acc_ax.legend(loc='lower left')
-
+        #plt.show()
         f = open(save_dir, "a")
-        f.write("TEST"+ str(i) + "\n")
+        f.write("NEW"+ str(i) + "\n")
         f.write("k =" + str(count) + "\n")
         f.write("test_acc=" + str(hist.history['accuracy'][-1]) + "\n")
         f.write("val_acc=" + str(hist.history['val_accuracy'][-1]) + "\n")
