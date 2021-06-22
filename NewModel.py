@@ -55,7 +55,7 @@ class_weights = {0 :1, 1 :1}
 
 with tf.device('/GPU:0'):
     ##################### Process Main  ######################
-    for i in range(1,53):
+    for i in range(47,53):
         count = 1
         #data path where preprocessed data
         dpath = "C:/Users/PC/OneDrive - knu.ac.kr/Data/s"+str(i)+"_pir.set"
