@@ -81,8 +81,28 @@ Solution => OverFitting 방지를 위해 Dropout과 Early Stopping을 실시해�
    AverageFoolingConv size(1,16) → AverageFoolingConv size(1,4)  
    
 4. Sampling and Hz 조절  
-Why? 우리가 EEGnet에서 주로 사용하고자 하는 주파수 대역은 8~12 Hz이므로 그것을 전처리에 Low Hz, High Hz를 8Hz,12Hz로 설정해    주면 Performance가 향상된다.  
+Why? 우리가 EEGnet에서 주로 사용하고자 하는 주파수 대역은 8~12 Hz이므로 그것을 전처리에 Low Hz, High Hz를 8Hz,12Hz로 설정해
+     주면 Performance가 향상된다.  
 But => 이 방법은 딥러닝의 취지에 벗어나 사용할 수 없었다.  
 
 5. Cross Validation Testset  
-   - 논문에서 Performance 향상을 위해 사용한 방법으로 우리도 k-fold validation을 이용해 Performance를 올릴 수 있었다.    
+   논문에서 Performance 향상을 위해 사용한 방법으로 우리도 k-fold validation을 이용해 Performance를 올릴 수 있었다.    
+
+# Preprocessing  
+## BPF  
+50Hz이상 주파수 제거    
+![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#767bceac5406421986cf40ff2d478fc0) ![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#c80129e3220c4b95a67e7dbed8bd838a)  
+  
+## ASR  
+bad channel 제거  
+![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#2f15571e466c4c0683d11bc9b2c98a38) ![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#6603c7eb21cb4cd99df0b27a389546f1)
+
+## CAR  
+전위 기준점 변경  
+![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#10dd10354e7f4b9890752a101b78c720) ![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#785c7d333d6c4a36a3bc7f892cf98dff)  
+  
+  
+## ICA  
+Noise가 될 수 있는 요인 제거 ex) Eye Blinking, Heart Rate...  
+![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#24ac9d522ad9474ab460a20919c059cc) ![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#bd1d14eec64d434e932360277a404de9)
+
