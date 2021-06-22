@@ -3,12 +3,6 @@
 ![title](https://user-images.githubusercontent.com/48755184/122780292-aefd9780-d2e9-11eb-8943-8208c790def2.png)
 
 ### Members 
-- _Jae Seong Park_ 
-- _Ji Hye Kim_
-- _Tae Heon Kim_
-- _Jang Hyeon Jin_
-
-### Info
 |Name|github_ID|
 |------|------|
 |박재성|wotjd0715|
