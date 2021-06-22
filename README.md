@@ -89,19 +89,19 @@ But => 이 방법은 딥러닝의 취지에 벗어나 사용할 수 없었다.
    논문에서 Performance 향상을 위해 사용한 방법으로 우리도 k-fold validation을 이용해 Performance를 올릴 수 있었다.    
 
 # Preprocessing  
-## BPF  
+## BPF(Band Pass Filter)  
 50Hz이상 주파수 제거  
-![image](https://user-images.githubusercontent.com/69957743/122971652-3b7f8700-d3ca-11eb-903a-4fdf37cc291f.png)![image](https://user-images.githubusercontent.com/69957743/122971704-4a663980-d3ca-11eb-96d3-fdd99f90cbb3.png)
+|![image](https://user-images.githubusercontent.com/69957743/122971652-3b7f8700-d3ca-11eb-903a-4fdf37cc291f.png)|![image](https://user-images.githubusercontent.com/69957743/122971704-4a663980-d3ca-11eb-96d3-fdd99f90cbb3.png)|
   
-## ASR  
+## ASR(Artifact Subspace Reconstruction)  
 bad channel 제거  
-![image](src="https://user-images.githubusercontent.com/69957743/122971811-6ec21600-d3ca-11eb-8e21-c0bc1f467a99.jpg" width="300")![image](src="https://user-images.githubusercontent.com/69957743/122971858-7aadd800-d3ca-11eb-96da-c00aa35f4e11.jpg" width="300")  
+|![image](https://user-images.githubusercontent.com/69957743/122971811-6ec21600-d3ca-11eb-8e21-c0bc1f467a99.jpg width="300")|![image](src="https://user-images.githubusercontent.com/69957743/122971858-7aadd800-d3ca-11eb-96da-c00aa35f4e11.jpg" width="300")|  
 
-## CAR  
+## CAR(Common Average Reference)  
 전위 기준점 변경  
-![image](https://user-images.githubusercontent.com/69957743/122971919-8a2d2100-d3ca-11eb-9dea-1ab91ebd197b.jpg)![image](https://user-images.githubusercontent.com/69957743/122971957-95804c80-d3ca-11eb-9f5c-ea299ddbf11c.jpg)  
+|![image](https://user-images.githubusercontent.com/69957743/122971919-8a2d2100-d3ca-11eb-9dea-1ab91ebd197b.jpg)|![image](https://user-images.githubusercontent.com/69957743/122971957-95804c80-d3ca-11eb-9f5c-ea299ddbf11c.jpg)|  
   
   
-## ICA  
+## ICA(Independent Component Analysis)  
 Noise가 될 수 있는 요인 제거 ex) Eye Blinking, Heart Rate...  
-![image](https://user-images.githubusercontent.com/69957743/122972011-a0d37800-d3ca-11eb-84fb-6188bd5b6740.jpg)![image](https://user-images.githubusercontent.com/69957743/122972045-ad57d080-d3ca-11eb-85af-831a3a0d4448.jpg)  
+|![image](https://user-images.githubusercontent.com/69957743/122972011-a0d37800-d3ca-11eb-84fb-6188bd5b6740.jpg)|![image](https://user-images.githubusercontent.com/69957743/122972045-ad57d080-d3ca-11eb-85af-831a3a0d4448.jpg)|  
