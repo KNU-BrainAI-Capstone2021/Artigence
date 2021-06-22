@@ -91,7 +91,7 @@ But => 이 방법은 딥러닝의 취지에 벗어나 사용할 수 없었다.
 # Preprocessing  
 ## BPF  
 50Hz이상 주파수 제거  
-![image](https://user-images.githubusercontent.com/69957743/122971652-3b7f8700-d3ca-11eb-903a-4fdf37cc291f.png,https://user-images.githubusercontent.com/69957743/122971704-4a663980-d3ca-11eb-96d3-fdd99f90cbb3.png)
+![image](https://user-images.githubusercontent.com/69957743/122971652-3b7f8700-d3ca-11eb-903a-4fdf37cc291f.png)![image](https://user-images.githubusercontent.com/69957743/122971704-4a663980-d3ca-11eb-96d3-fdd99f90cbb3.png)
   
 ## ASR  
 bad channel 제거  
