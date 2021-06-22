@@ -24,7 +24,7 @@ from matplotlib import pyplot as plt
 #tf.debugging.set_log_device_placement(True)
 
 #saving result path
-save_dir = 'C:/Users/PC/Desktop/downsamp.txt'
+save_dir = 'C:/Users/PC/Desktop/multi_ds.txt'
 
 # while the default tensorflow ordering is 'channels_last' we set it here
 # to be explicit in case if the user has changed the default ordering
