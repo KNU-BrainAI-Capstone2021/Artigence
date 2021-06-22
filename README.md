@@ -90,19 +90,18 @@ But => 이 방법은 딥러닝의 취지에 벗어나 사용할 수 없었다.
 
 # Preprocessing  
 ## BPF  
-50Hz이상 주파수 제거    
-![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#767bceac5406421986cf40ff2d478fc0) ![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#c80129e3220c4b95a67e7dbed8bd838a)  
+50Hz이상 주파수 제거  
+![image](https://user-images.githubusercontent.com/69957743/122971652-3b7f8700-d3ca-11eb-903a-4fdf37cc291f.png) ![image](https://user-images.githubusercontent.com/69957743/122971704-4a663980-d3ca-11eb-96d3-fdd99f90cbb3.png)  
   
 ## ASR  
 bad channel 제거  
-![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#2f15571e466c4c0683d11bc9b2c98a38) ![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#6603c7eb21cb4cd99df0b27a389546f1)
+![image](https://user-images.githubusercontent.com/69957743/122971811-6ec21600-d3ca-11eb-8e21-c0bc1f467a99.jpg) ![image](https://user-images.githubusercontent.com/69957743/122971858-7aadd800-d3ca-11eb-96da-c00aa35f4e11.jpg)  
 
 ## CAR  
 전위 기준점 변경  
-![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#10dd10354e7f4b9890752a101b78c720) ![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#785c7d333d6c4a36a3bc7f892cf98dff)  
+![image](https://user-images.githubusercontent.com/69957743/122971919-8a2d2100-d3ca-11eb-9dea-1ab91ebd197b.jpg) ![image](https://user-images.githubusercontent.com/69957743/122971957-95804c80-d3ca-11eb-9f5c-ea299ddbf11c.jpg)  
   
   
 ## ICA  
 Noise가 될 수 있는 요인 제거 ex) Eye Blinking, Heart Rate...  
-![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#24ac9d522ad9474ab460a20919c059cc) ![image](https://www.notion.so/Data-Preprocessing-48fb16cd6aa24ee4a04d5df224bbcdee#bd1d14eec64d434e932360277a404de9)
-
+![image](https://user-images.githubusercontent.com/69957743/122972011-a0d37800-d3ca-11eb-84fb-6188bd5b6740.jpg) ![image](https://user-images.githubusercontent.com/69957743/122972045-ad57d080-d3ca-11eb-85af-831a3a0d4448.jpg)  
