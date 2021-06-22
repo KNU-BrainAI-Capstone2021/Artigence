@@ -95,7 +95,7 @@ But => 이 방법은 딥러닝의 취지에 벗어나 사용할 수 없었다.
   
 ## ASR  
 bad channel 제거  
-![image](https://user-images.githubusercontent.com/69957743/122971811-6ec21600-d3ca-11eb-8e21-c0bc1f467a99.jpg)![image](https://user-images.githubusercontent.com/69957743/122971858-7aadd800-d3ca-11eb-96da-c00aa35f4e11.jpg)  
+![image](src="https://user-images.githubusercontent.com/69957743/122971811-6ec21600-d3ca-11eb-8e21-c0bc1f467a99.jpg" width="300")![image](src="https://user-images.githubusercontent.com/69957743/122971858-7aadd800-d3ca-11eb-96da-c00aa35f4e11.jpg" width="300")  
 
 ## CAR  
 전위 기준점 변경  
