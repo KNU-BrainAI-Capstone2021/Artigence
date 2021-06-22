@@ -34,8 +34,8 @@ kf = KFold(n_splits=4, shuffle= True, random_state= True)
 ##################### Process, filter and epoch the data ######################
 dpath = "C:/Users/PC/OneDrive - knu.ac.kr/Data/"
 #median = 56.75 good subject acc > medain else bad subject
-good_subject = [1,2,3,4,5,6,8,11,12,13,14,20,21,22,23,25,27,29,32,33,39,43,46,47,50,51]
-bad_subject = [7,9,10,15,16,17,18,19,24,26,28,30,31,34,35,36,37,38,40,41,42,44,45,48,49,52]
+good_subject = [1,2,3,4,5,6,7,8,10,11,12,13,14,16,17,21,22,23,25,26,27,28,29,34,35,43,47,48,50]
+bad_subject = [9,15,18,19,20,24,30,31,32,33,36,37,38,39,40,41,42,44,45,46,49,51,52]
 
 event_id = dict(left=1, right=2)
 tmin = 0
