@@ -108,7 +108,7 @@ for test_num in range(1,53):
     X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, train_size=0.9, shuffle=True,
                                                       random_state=1004)
 
-    early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=20)
+    early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=50)
     # Chans, Samples  : number of channels and time points in the EEG data
     # kernelLength : half of data sampling rate
     model = EEGNet(nb_classes=2, Chans=chans, Samples=samples,
