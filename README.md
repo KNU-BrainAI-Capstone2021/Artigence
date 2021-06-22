@@ -103,5 +103,5 @@ bad channel 제거
     
 ## ICA(Independent Component Analysis)  
 Noise가 될 수 있는 요인 제거 ex) Eye Blinking, Heart Rate...  
-<img src = "https://user-images.githubusercontent.com/69957743/122972011-a0d37800-d3ca-11eb-84fb-6188bd5b6740.jpg" width="500px" height="500"><img src = "https://user-images.githubusercontent.com/69957743/122972045-ad57d080-d3ca-11eb-85af-831a3a0d4448.jpg" width="500px" height="500">
+<img src = "https://user-images.githubusercontent.com/69957743/122977750-bba8eb00-d3d0-11eb-8190-f2438c22128e.jpg" width="500px" height="500"><img src = "https://user-images.githubusercontent.com/69957743/122977806-c794ad00-d3d0-11eb-82ef-a8377b9865ff.jpg" width="500px" height="500">
  
