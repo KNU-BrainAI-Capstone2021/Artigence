@@ -95,12 +95,13 @@ But => 이 방법은 딥러닝의 취지에 벗어나 사용할 수 없었다.
   
 ## ASR(Artifact Subspace Reconstruction)  
 bad channel 제거  
-![image1](https://user-images.githubusercontent.com/69957743/122971811-6ec21600-d3ca-11eb-8e21-c0bc1f467a99.jpg)![image2](https://user-images.githubusercontent.com/69957743/122971858-7aadd800-d3ca-11eb-96da-c00aa35f4e11.jpg) 
+<img src = "https://user-images.githubusercontent.com/69957743/122971811-6ec21600-d3ca-11eb-8e21-c0bc1f467a99.jpg" width="500px"><img src = "https://user-images.githubusercontent.com/69957743/122971858-7aadd800-d3ca-11eb-96da-c00aa35f4e11.jpg" width="500px">
 
 ## CAR(Common Average Reference)  
 전위 기준점 변경  
-![image](https://user-images.githubusercontent.com/69957743/122971919-8a2d2100-d3ca-11eb-9dea-1ab91ebd197b.jpg)![image](https://user-images.githubusercontent.com/69957743/122971957-95804c80-d3ca-11eb-9f5c-ea299ddbf11c.jpg)  
+<img src = "https://user-images.githubusercontent.com/69957743/122971919-8a2d2100-d3ca-11eb-9dea-1ab91ebd197b.jpg" width="500px"><img src = "https://user-images.githubusercontent.com/69957743/122971957-95804c80-d3ca-11eb-9f5c-ea299ddbf11c.jpg" width="500px">  
     
 ## ICA(Independent Component Analysis)  
 Noise가 될 수 있는 요인 제거 ex) Eye Blinking, Heart Rate...  
-![image](https://user-images.githubusercontent.com/69957743/122972011-a0d37800-d3ca-11eb-84fb-6188bd5b6740.jpg)![image](https://user-images.githubusercontent.com/69957743/122972045-ad57d080-d3ca-11eb-85af-831a3a0d4448.jpg)  
+<img src = "https://user-images.githubusercontent.com/69957743/122972011-a0d37800-d3ca-11eb-84fb-6188bd5b6740.jpg" width="500px"><img src = "https://user-images.githubusercontent.com/69957743/122972045-ad57d080-d3ca-11eb-85af-831a3a0d4448.jpg" width="500px">
+ 
