@@ -46,7 +46,7 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 ![image](https://user-images.githubusercontent.com/72614541/122770462-6db4ba00-d2e0-11eb-9230-926679be6caa.png)
 
 # Idea meeting picture
-![image](https://user-images.githubusercontent.com/72614541/122766549-a3f03a80-d2dc-11eb-9dbb-e2bf17c39525.png),![image](https://user-images.githubusercontent.com/72614541/122766578-ace10c00-d2dc-11eb-81f0-14bbf47b1005.png)
+<img src = "https://user-images.githubusercontent.com/72614541/122766549-a3f03a80-d2dc-11eb-9dbb-e2bf17c39525.png" width="400px" height="400"><img src = "https://user-images.githubusercontent.com/72614541/122766578-ace10c00-d2dc-11eb-81f0-14bbf47b1005.png" width="400px" height="400">
 
 # DataSet we used
 ![image](https://user-images.githubusercontent.com/72614541/122766803-e44fb880-d2dc-11eb-87b0-8b3cd64265c0.png)
@@ -103,5 +103,5 @@ bad channel 제거
     
 ## ICA(Independent Component Analysis)  
 Noise가 될 수 있는 요인 제거 ex) Eye Blinking, Heart Rate...  
-<img src = "https://user-images.githubusercontent.com/69957743/122972011-a0d37800-d3ca-11eb-84fb-6188bd5b6740.jpg" width="500px"><img src = "https://user-images.githubusercontent.com/69957743/122972045-ad57d080-d3ca-11eb-85af-831a3a0d4448.jpg" width="500px">
+<img src = "https://user-images.githubusercontent.com/69957743/122972011-a0d37800-d3ca-11eb-84fb-6188bd5b6740.jpg" width="500px" height="500"><img src = "https://user-images.githubusercontent.com/69957743/122972045-ad57d080-d3ca-11eb-85af-831a3a0d4448.jpg" width="500px" height="500">
  
