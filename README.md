@@ -66,7 +66,13 @@ EEGNET – A compact CNN architecture for EEG-based BCIs
 CNN
 
 ![image](https://user-images.githubusercontent.com/72614541/122766924-0ba68580-d2dd-11eb-8cfd-e0117c8dc8a1.png)
-![image](https://user-images.githubusercontent.com/72614541/122766936-0f3a0c80-d2dd-11eb-8e68-5edfdf063bd5.png)
+![image](https://user-images.githubusercontent.com/72614541/122766936-0f3a0c80-d2dd-11eb-8e68-5edfdf063bd5.png)  
+
+# Model Achitecture  
+|EEGNet Model|New Model|
+|------|------|
+|![image](https://user-images.githubusercontent.com/69957743/123049034-0ca0f980-d43a-11eb-9d15-55a73c440af4.png)|![image](https://user-images.githubusercontent.com/69957743/123049119-2e01e580-d43a-11eb-824c-823c68ca37fd.png)|
+
 
 # How to try to improve performance in EEGnet Models?
 1. epochs.get_data()*1 → epochs.get_data()*1000  
