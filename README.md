@@ -111,3 +111,8 @@ bad channel 제거
 Noise가 될 수 있는 요인 제거 ex) Eye Blinking, Heart Rate...  
 <img src = "https://user-images.githubusercontent.com/69957743/122977750-bba8eb00-d3d0-11eb-8190-f2438c22128e.jpg" width="500px"><img src = "https://user-images.githubusercontent.com/69957743/122977806-c794ad00-d3d0-11eb-82ef-a8377b9865ff.jpg" width="500px" height="500px">
  
+## Project 진행상황
+![image](https://user-images.githubusercontent.com/72614541/123057170-9b197900-d442-11eb-90ca-ee13edc41f1c.png)
+![image](https://user-images.githubusercontent.com/72614541/123057204-a2d91d80-d442-11eb-9fb1-51f6b457ed99.png)
+
+
