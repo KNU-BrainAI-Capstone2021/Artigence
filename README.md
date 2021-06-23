@@ -72,6 +72,13 @@ CNN
 ![image](https://user-images.githubusercontent.com/72614541/122766924-0ba68580-d2dd-11eb-8cfd-e0117c8dc8a1.png)
 ![image](https://user-images.githubusercontent.com/72614541/122766936-0f3a0c80-d2dd-11eb-8e68-5edfdf063bd5.png)  
 
+# Requirements:
+    (1) tensorflow == 2.3 
+    (2) mne >= 0.17.1
+    (3) PyRiemann >= 0.2.5
+    (4) scikit-learn >= 0.20.1
+    (5) matplotlib >= 2.2.3
+    
 # Model Achitecture  
 |EEGNet Model|New Model|
 |------|------|
