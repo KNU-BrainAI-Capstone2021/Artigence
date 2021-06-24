@@ -94,8 +94,8 @@ Solution => 우리가 원하는 Action potential은 보통 70[mV]단위이므로
 Why? Performance를 보면 Training Accuracy가 과도하게 높아져 Validation Accuracy가 Overfitting의 결과로 떨어졌다.  
 Solution => OverFitting 방지를 위해 Dropout과 Early Stopping을 실시해보았다.  
 
-3. AverageFoolingConv size(1,16) → AverageFoolingConv size(1,8)  
-   AverageFoolingConv size(1,16) → AverageFoolingConv size(1,4)  
+3. AverageFoolingConv size(1,4) → AverageFoolingConv size(1,8)  
+   AverageFoolingConv size(1,8) → AverageFoolingConv size(1,4)  
    
 4. Sampling and Hz 조절  
 Why? 우리가 EEGnet에서 주로 사용하고자 하는 주파수 대역은 8~12 Hz이므로 그것을 전처리에 Low Hz, High Hz를 8Hz,12Hz로 설정해
