@@ -10,6 +10,13 @@
 |김지혜|jihyekim213|
 |장현진|nowwhy|
 
+# Code
+Cross_Newmodel.py : Cross-subject performance with proposed Multi-DS-EEGNet 
+Cross_Subject.py  : Cross-subject performance with EEGNet
+NewModel.py       : Within-subject performance with proposed Multi-DS-EEGNet 
+Within_Subject.py : Within-subject performance with EEGNet
+EEGNet.py         : Several EEGNet version with proposed Multi-DS-EEGNet 
+preprocessing.m   : Matlab code for preprocessing(BPF,ASR,CAR,ICA) with eeglab
 # Tech
 ![github badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github)     ![python](https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white) ![tensorflow](https://img.shields.io/badge/Tensorflow-orange?style=flat-square&logo=Tensorflow&logoColor=white)       
 
