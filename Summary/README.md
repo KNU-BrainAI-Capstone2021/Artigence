@@ -2,7 +2,16 @@
 
 프로젝트 수행 과정 정리 입니다. 자세한 내용을 Notion을 통해 확인해주세요.
 
-------
+---
+## 2학기
+
+### [Road map](https://picayune-drip-39f.notion.site/2-540783433ad74f43928a11e79f00ca70) : 프로젝트의  tasks
+
+### [Meeting notes](https://picayune-drip-39f.notion.site/11ef978ef636483cacc1d076dc02db6f?v=a4111d8d61fe46219c55bd5a6bc89aac) : 현재까지 진행한 미팅 내용
+
+---
+
+## 1학기
 
 ### [Road map](https://www.notion.so/018f84f9a1264880ac2a4bffed73686c) : 프로젝트의  tasks
 
