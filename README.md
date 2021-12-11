@@ -34,6 +34,9 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 ### [_Summary_](https://github.com/KNU-BrainAI-Capstone2021/Artigence/tree/master/Summary) 참고
 
 # Our Workplan
+## 주제
+![image](https://user-images.githubusercontent.com/69957743/145678637-924fa33d-3188-480f-9652-4861a750c370.png)
+
 ## 2학기
 ![image](https://user-images.githubusercontent.com/69957743/145677615-e26d222e-b702-44da-a953-78c92ab290cd.png)
 
@@ -41,6 +44,10 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 ![image](https://user-images.githubusercontent.com/69957743/145677648-6f3212d4-7683-418b-b5a4-b1e994ab2843.png)
 
 ## Project 진행상황
+
+## 2학기
+![image](https://user-images.githubusercontent.com/69957743/145679300-72189ace-aef4-499b-b564-6a36a5f9c9f0.png)
+
 ![image](https://user-images.githubusercontent.com/69957743/145677158-d44e549e-6777-4fdb-875b-c6bd04a603c0.png)
 ![image](https://user-images.githubusercontent.com/69957743/145677118-07015831-3bdd-4d0a-a499-07f82a45eda2.png)
 
@@ -51,8 +58,38 @@ Open DB : [http://deepbci.korea.ac.kr/opensource/opendb/](http://deepbci.korea.a
 ![image](https://user-images.githubusercontent.com/72614541/122766803-e44fb880-d2dc-11eb-87b0-8b3cd64265c0.png)
 ![image](https://user-images.githubusercontent.com/72614541/122766822-e87bd600-d2dc-11eb-826d-2ca4c946bdd6.png)
 
+---
 # BCI System process
 ![image](https://user-images.githubusercontent.com/69957743/145677273-7fc0c40d-781a-4ef6-9473-925d26b4727b.png)
+
+---
+# Signal Acquisition
+![image](https://user-images.githubusercontent.com/69957743/145679216-d9abfc88-de8e-4ee4-a57d-c362c689e90e.png)
+
+---
+# Signal Processing
+## classification
+Classification Algorithm
+![image](https://user-images.githubusercontent.com/69957743/145679179-7d5ae91a-c7ec-45af-98d1-2f048000d584.png)
+
+
+---
+# Application
+![Application](https://user-images.githubusercontent.com/69957743/145679093-2168d24c-9597-4f8c-95d6-23ddb92a31a0.gif)   
+
+# Prototype   
+
+### 구상도
+![image](https://user-images.githubusercontent.com/69957743/145679239-c2857f07-65ba-4d47-8730-46e90625287d.png)
+![image](https://user-images.githubusercontent.com/69957743/145679259-c42e13a5-99f6-4e09-8926-f3d6427f9fb3.png)
+
+
+## Flow Diagram
+![image](https://user-images.githubusercontent.com/69957743/145679145-0085f820-0986-435c-8a69-507285a840d6.png)
+
+
+---
+# Preprocessing   
 
 # How to Preprocess Dataset
 BPF, ASR, CAR, ICA in Matlab
